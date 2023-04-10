@@ -1,0 +1,30 @@
+.head {
+    background-color: #0D0D0D;
+    padding: 45px 0;
+    &-bottom {
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &__nav {
+            ul {
+                display: flex;
+                list-style: none;
+                li {
+                    padding-right: 15px;
+                    cursor: pointer;
+                }
+            }
+        }
+        &__right {
+            display: flex;
+            align-items: center;
+            .basket {
+                margin-left: 10px;
+                img {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
