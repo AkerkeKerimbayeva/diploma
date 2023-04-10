@@ -5,6 +5,7 @@
         <img src="../assets/images/Foodtuck.svg" alt="" />
       </div>
       <div class="head-bottom">
+        asd
         <div class="head-bottom__nav">
           <ul>
             <li class="px16-400">Басты бет</li>
