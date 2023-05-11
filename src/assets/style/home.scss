@@ -164,3 +164,39 @@
         }
     }
 }
+.numbers {
+    display: flex;
+    justify-content: space-between;
+}
+.menu {
+    padding: 120px 0;
+    .meal {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+        &-left {
+            width: 30%;
+        }
+        &-cards {
+            width: 58%;
+            display: flex;
+            flex-wrap: wrap;
+            &__item {
+                display: flex;
+                align-items: center;
+                width: 49%;
+                img {
+                    width: 80px;
+                }
+                p {
+                    text-align: left;
+                    margin-left: 10px;
+                }
+                .par {
+                    padding: 10px 0;
+                }
+            }
+        }
+    }
+}

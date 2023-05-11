@@ -88,14 +88,139 @@
           </div>
         </div>
       </section>
+      <section class="numbers">
+        <div class="numbers-item">
+          <img src="@/assets/images/num1.png" alt="">
+          <p class="numbers-item-text px24 fw700">Үздік аспаздар</p>
+          <p class="px48 fw700">420</p>
+        </div>
+        <div class="numbers-item">
+          <img src="@/assets/images/num2.svg" alt="">
+          <p class="numbers-item-text px24 fw700">Сапалы азық-түлік</p>
+          <p class="px48 fw700">320</p>
+        </div>
+        <div class="numbers-item">
+          <img src="@/assets/images/num3.svg" alt="">
+          <p class="numbers-item-text px24 fw700">Тәжірибе</p>
+          <p class="px48 fw700">30+</p>
+        </div>
+        <div class="numbers-item">
+          <img src="@/assets/images/num4.png" alt="">
+          <p class="numbers-item-text px24 fw700">Тұрақты клиенттер</p>
+          <p class="px48 fw700">1000</p>
+        </div>
+      </section>
+      <section class="menu">
+        <p class="menu-title green px48 fw700">Біздің мәзірден</p>
+        <div class="menu-cards">
+          <personal-tab
+            :tabItems="tabItems"
+            @setTab="selectNewsTab"
+            :selected="selectedNewsTab"
+          >
+          </personal-tab>
+          <tab-block :isSelected="selectedNewsTab === 'Таңғы ас'">
+            <div class="meal">
+              <img class="meal-left" src="@/assets/images/meal.png" alt="">
+              <div class="meal-cards">
+                <div class="meal-cards__item">
+                  <img src="@/assets/images/meal1.png" alt="">
+                  <div class="text">
+                    <p class="px18 fw700">Lettuce Leaf</p>
+                    <p class="par px14 fw400">Lacus nisi, et ac dapibus velit in consequat.</p>
+                    <p class="px18 green fw700">12.5$</p>
+                  </div>
+                </div>
+                <div class="meal-cards__item">
+                  <img src="@/assets/images/meal1.png" alt="">
+                  <div class="text">
+                    <p class="px18 fw700">Lettuce Leaf</p>
+                    <p class="par px14 fw400">Lacus nisi, et ac dapibus velit in consequat.</p>
+                    <p class="px18 green fw700">12.5$</p>
+                  </div>
+                </div>
+                <div class="meal-cards__item">
+                  <img src="@/assets/images/meal1.png" alt="">
+                  <div class="text">
+                    <p class="px18 fw700">Lettuce Leaf</p>
+                    <p class="par px14 fw400">Lacus nisi, et ac dapibus velit in consequat.</p>
+                    <p class="px18 green fw700">12.5$</p>
+                  </div>
+                </div>
+                <div class="meal-cards__item">
+                  <img src="@/assets/images/meal1.png" alt="">
+                  <div class="text">
+                    <p class="px18 fw700">Lettuce Leaf</p>
+                    <p class="par px14 fw400">Lacus nisi, et ac dapibus velit in consequat.</p>
+                    <p class="px18 green fw700">12.5$</p>
+                  </div>
+                </div>
+                <div class="meal-cards__item">
+                  <img src="@/assets/images/meal1.png" alt="">
+                  <div class="text">
+                    <p class="px18 fw700">Lettuce Leaf</p>
+                    <p class="par px14 fw400">Lacus nisi, et ac dapibus velit in consequat.</p>
+                    <p class="px18 green fw700">12.5$</p>
+                  </div>
+                </div>
+                <div class="meal-cards__item">
+                  <img src="@/assets/images/meal1.png" alt="">
+                  <div class="text">
+                    <p class="px18 fw700">Lettuce Leaf</p>
+                    <p class="par px14 fw400">Lacus nisi, et ac dapibus velit in consequat.</p>
+                    <p class="px18 green fw700">12.5$</p>
+                  </div>
+                </div>
+                <div class="meal-cards__item">
+                  <img src="@/assets/images/meal1.png" alt="">
+                  <div class="text">
+                    <p class="px18 fw700">Lettuce Leaf</p>
+                    <p class="par px14 fw400">Lacus nisi, et ac dapibus velit in consequat.</p>
+                    <p class="px18 green fw700">12.5$</p>
+                  </div>
+                </div>
+                <div class="meal-cards__item">
+                  <img src="@/assets/images/meal1.png" alt="">
+                  <div class="text">
+                    <p class="px18 fw700">Lettuce Leaf</p>
+                    <p class="par px14 fw400">Lacus nisi, et ac dapibus velit in consequat.</p>
+                    <p class="px18 green fw700">12.5$</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tab-block>
+        </div>
+      </section>
     </div>
   </div>
 </template>
 
 <script>
+import personalTab from '@/components/tab/personalTab.vue';
+import tabBlock from '@/components/tab/tabBlock.vue';
 export default {
   name: "HomeView",
-  components: {},
+  components: { personalTab, tabBlock },
+  data() {
+    return {
+      selectedNewsTab: "Таңғы ас",
+      tabItems: [
+        "Таңғы ас",
+        "Түскі ас",
+        "Кешкі ас",
+        "Десерттер",
+        "Сусындар",
+        "Снэктер",
+        "Сорпалар"
+      ],
+    }
+  },
+  methods: {
+    selectNewsTab(tab) {
+      this.selectedNewsTab = tab;
+    },
+  }
 };
 </script>
 

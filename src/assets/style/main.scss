@@ -5,6 +5,9 @@
     margin: 0;
     font-style: normal;
 }
+li {
+    list-style: none;
+}
 div {
     box-sizing: border-box;
 }
@@ -26,7 +29,7 @@ div {
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #FFFFFF;
+    color: #333333;
 }
 .button {
     border: 1px solid #195A00;
@@ -50,6 +53,9 @@ div {
 }
 .gray {
     color: #4F4F4F;
+}
+.white {
+    color: #FFFFFF;
 }
 .green {
     color: #195A00 !important;

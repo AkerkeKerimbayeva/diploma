@@ -3,12 +3,14 @@
   <transition name="fade" mode="in-out">
     <router-view />
   </transition>
+  <footer-vue/>
 </template>
 
 <script>
+import FooterVue from './components/FooterVue.vue';
 import HeaderVue from "./components/HeaderVue.vue";
 export default {
-  components: { HeaderVue },
+  components: { HeaderVue, FooterVue },
 };
 </script>
 
