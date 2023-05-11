@@ -61,8 +61,29 @@
           <p class="px16 fw400">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum. Urna, elit augue urna, vitae feugiat pretium donec id elementum. Ultrices mattis sed vitae mus risus. Lacus nisi, et ac dapibus sit eu velit in consequat.</p>
           <div class="taste-right__items">
             <div class="item">
-              <!-- <img src="@/assets/images/" alt=""> -->
-              <p></p>
+              <div class="item-card">
+                <img src="@/assets/images/icons/Hamburger.svg" alt="">
+              </div>
+              <p class="px18 fw400">Fast Food</p>
+            </div>
+            <div class="item">
+              <div class="item-card">
+                <img src="@/assets/images/icons/Cookie.svg" alt="">
+              </div>
+              <p class="px18 fw400">Түскі ас</p>
+            </div>
+            <div class="item">
+              <div class="item-card">
+                <img src="@/assets/images/icons/Wine.svg" alt="">
+              </div>
+              <p class="px18 fw400">Кешкі ас</p>
+            </div>
+          </div>
+          <div class="exp">
+            <p class="px48 fw700 green">30+</p>
+            <div class="exp-text">
+              <p class="px18 fw400">жылдық үздік</p>
+              <p class="px24 fw600">Тәжірибе</p>
             </div>
           </div>
         </div>
