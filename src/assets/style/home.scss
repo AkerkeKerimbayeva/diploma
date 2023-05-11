@@ -1,18 +1,27 @@
 .head {
-    background-color: #0D0D0D;
+    background-color: #fff;
     padding: 45px 0;
+    &-logo {
+        margin-right: 15px;
+    }
     &-bottom {
         margin-top: 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         &__nav {
+            display: flex;
+            align-items: center;
             ul {
                 display: flex;
                 list-style: none;
                 li {
                     padding-right: 15px;
                     cursor: pointer;
+                    a {
+                        text-decoration: none;
+                        color: #333333;
+                    }
                 }
             }
         }
@@ -25,6 +34,99 @@
                     cursor: pointer;
                 }
             }
+        }
+    }
+}
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &-left {
+        display: flex;
+        flex-direction: column;
+        p {
+            text-align: left;
+        }
+        &__desc {
+            margin: 20px 0;
+        }
+    }
+}
+.best {
+    margin: 120px 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    // background-image: url("@/assets/images/leaf.png");
+    // background-repeat: no-repeat;
+    &-left {
+        width: 48%;
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        p {
+            text-align: left;
+        }
+        &__mid {
+            margin: 20px 0;
+        }
+        &__line {
+            p {
+                padding-bottom: 10px;
+            }
+        }
+        button {
+            margin-top: 30px;
+        }
+    }
+    &-right {
+        width: 48%;
+        max-width: 660px;
+        &__img {
+            margin-bottom: 10px;
+        }
+        &__btm {
+            display: flex;
+            justify-content: space-between;
+            background-position: bottom;
+        }
+    }
+}
+.choice {
+    &-title {
+        margin-bottom: 50px;
+    }
+    &-cards {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        img {
+            width: 23%;
+        }
+    }
+}
+.taste {
+    width: 100%;
+    padding: 120px 0;
+    display: flex;
+    &-left {
+        width: 50%;
+        img {
+            object-fit: cover;
+            padding: 5px;
+        }
+        &__top {
+            display: flex;
+            .card {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+    &-right {
+        width: 48%;
+        p {
+            text-align: right;
         }
     }
 }
