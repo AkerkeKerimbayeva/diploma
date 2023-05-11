@@ -3,12 +3,13 @@
     <div class="container">
       <section class="main">
         <div class="main-left">
-          <p class="px60 fw700 black">Жылдам және <br> Сапалы тағам <br> дайындау өнері</p>
-          <p class="px16 fw400 gray main-left__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Varius sed pharetra dictum neque massa congue</p>
+          <p class="px60 fw700 black" data-aos="fade-right">Жылдам және <br> Сапалы тағам <br> дайындау өнері</p>
+          <p class="px16 fw400 gray main-left__desc" data-aos="fade-up-right">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Varius sed pharetra dictum neque massa congue</p>
           <button class="button">Менюді көру</button>
         </div>
         <div class="main-right">
-          <img src="@/assets/images/main.png" alt="">
+          <img  data-aos="zoom-in-left" data-aos-easing="linear"
+     data-aos-duration="1500" src="@/assets/images/main.png" alt="">
         </div>
       </section>
       <section class="best">
