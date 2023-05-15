@@ -7,13 +7,25 @@
             <img src="../assets/images/icons/Foodtuck.png" alt="" />
           </div>
           <ul>
-            <li class="px16-400"><router-link to="/">Басты бет</router-link></li>
-            <li class="px16-400"><router-link to="/">Мәзір</router-link></li>
-            <li class="px16-400"><router-link to="/">Жеңілдіктер</router-link></li>
-            <li class="px16-400"><router-link to="/">Бронь жасау</router-link></li>
-            <li class="px16-400"><router-link to="/">Онлайн тапсырыс</router-link></li>
+            <li class="px16-400">
+              <router-link to="/">Басты бет</router-link>
+            </li>
+            <li class="px16-400">
+              <router-link to="/menu">Мәзір</router-link>
+            </li>
+            <li class="px16-400">
+              <router-link to="/">Жеңілдіктер</router-link>
+            </li>
+            <li class="px16-400">
+              <router-link to="/">Бронь жасау</router-link>
+            </li>
+            <li class="px16-400">
+              <router-link to="/">Онлайн тапсырыс</router-link>
+            </li>
             <li class="px16-400"><router-link to="/">Байланыс</router-link></li>
-            <li class="px16-400"><router-link to="/">Біз туралы</router-link></li>
+            <li class="px16-400">
+              <router-link to="/">Біз туралы</router-link>
+            </li>
           </ul>
         </div>
         <div class="head-bottom__right">
