@@ -12,14 +12,21 @@
         <Card class="menu-card" />
         <Card class="menu-card" />
       </div>
+      <div class="menu-navbar">
+        <category />
+        <div class="sort">
+          <div class="sort-title">Баға бойынша сұрыптау</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Card from "@/components/product/Card.vue";
+import Category from "../components/product/Category.vue";
 export default {
-  components: { Card },
+  components: { Card, Category },
 };
 </script>
 
@@ -38,6 +45,8 @@ export default {
   }
   &-box {
     padding: 30px 0 80px 0;
+    display: flex;
+    justify-content: space-between;
   }
 }
 </style>

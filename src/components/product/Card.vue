@@ -25,9 +25,17 @@ export default {};
   flex-direction: column;
   justify-content: space-between;
   transition: 0.4s;
+  border: 1px solid #195a00;
+  a {
+    img {
+      transition: 0.4s;
+      width: 100%;
+    }
+  }
   &-btm {
     display: flex;
     justify-content: space-between;
+    padding: 0 10px 10px 10px;
     img {
       object-fit: contain;
       cursor: pointer;
