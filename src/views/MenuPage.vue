@@ -16,6 +16,7 @@
         <category />
         <div class="sort">
           <div class="sort-title">Баға бойынша сұрыптау</div>
+          <input type="range" name="" id="" />
         </div>
       </div>
     </div>
@@ -48,5 +49,8 @@ export default {
     display: flex;
     justify-content: space-between;
   }
+}
+.sort {
+  margin-top: 25px;
 }
 </style>
