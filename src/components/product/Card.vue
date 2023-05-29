@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <router-link to="">
+    <router-link to="/meal">
       <img src="@/assets/images/burger.png" alt="" />
     </router-link>
     <div class="card-btm">
