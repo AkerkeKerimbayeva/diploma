@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "npm run lint -- --fix && vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint --ext .js,.vue"
   },
   "dependencies": {
     "aos": "^2.3.4",
