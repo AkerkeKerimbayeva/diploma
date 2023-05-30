@@ -1,0 +1,165 @@
+<template>
+    <div class="order">
+        <div class="order-top">
+            <div class="container">
+                <div class="order-top__title white px48 fw500">Онлайн тапсырыс</div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="order-btm">
+                <div class="order-btm__left">
+                    <div class="order-btm__left-item">
+                        <p>Аты</p>
+                        <input placeholder="Есіміңізді еңгізіңіз" class="input" type="text">
+                    </div>
+                    <div class="order-btm__left-item">
+                        <p>Тегі</p>
+                        <input placeholder="Тегіңізді еңгізіңіз" class="input" type="text">
+                    </div>
+                    <div class="order-btm__left-item">
+                        <p>Email </p>
+                        <input placeholder="Почтаңызды еңгізіңіз" class="input" type="text">
+                    </div>
+                    <div class="order-btm__left-item">
+                        <p>Телефон нөмірі</p>
+                        <input placeholder="Нөміріңізді еңгізіңіз" class="input" type="text">
+                    </div>
+                    <div class="order-btm__left-item">
+                        <p>Тағам бойынша пікір немесе қалау</p>
+                        <input class="input" type="text">
+                    </div>
+                    <div class="order-btm__left-item">
+                        <p>Көше</p>
+                        <input class="input" type="text">
+                    </div>
+                    <div class="order-btm__left-item">
+                        <p>Подъезд(офис)</p>
+                        <input class="input" type="text">
+                    </div>
+                    <div class="order-btm__left-item">
+                        <p>Пәтер нөмірі</p>
+                        <input class="input" type="text">
+                    </div>
+                </div>
+                <div class="order-btm__right">
+                    <div class="card">
+                        <img src="@/assets/images/meal3.png" alt="">
+                        <div class="text">
+                            <p class="px18 fw500">Chicken Tikka Kabab</p>
+                            <p>150 gm net</p>
+                            <p>50$</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@/assets/images/meal3.png" alt="">
+                        <div class="text">
+                            <p class="px18 fw500">Chicken Tikka Kabab</p>
+                            <p>150 gm net</p>
+                            <p>50$</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="@/assets/images/meal3.png" alt="">
+                        <div class="text">
+                            <p class="px18 fw500">Chicken Tikka Kabab</p>
+                            <p>150 gm net</p>
+                            <p>50$</p>
+                        </div>
+                    </div>
+                    <div class="total">
+                        <div class="total-sum">
+                            <p>Бағасы</p>
+                            <p>10 000</p>
+                        </div>
+                        <div class="total-sum">
+                            <p>Жеткізу</p>
+                            <p>10 000</p>
+                        </div>
+                        <div class="total-sum">
+                            <p>Жеңілдік</p>
+                            <p>10 000</p>
+                        </div>
+                        <!-- <div class="total-sum">
+                            <p>Tax</p>
+                            <p>10 000</p>
+                        </div> -->
+                        <hr>
+                        <div class="total-sum">
+                            <p>Толық сумма</p>
+                            <p class="px24 fw500">10 000</p>
+                        </div>
+                        <button class="button">Төлем жасау</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style lang="scss" scoped>
+.order {
+    &-top {
+        background-image: url('@/assets/images/online.png');
+        background-repeat: no-repeat;
+        height: 350px;
+        &__title {
+            padding-top: 150px;
+        }
+    }
+    &-btm {
+        display: flex;
+        justify-content: space-between;
+        margin: 50px 0;
+        &__left {
+            width: 60%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            &-item {
+                width: 46%;
+                margin-bottom: 30px;
+                input {
+                    width: 100%;
+                    border-radius: 5px;
+                }
+                p {
+                    text-align: left;
+                    padding-bottom: 10px;
+                }
+            }
+        }
+        &__right {
+            width: 30%;
+            border: 1px solid #E0E0E0;
+            padding: 20px;
+            .card {
+                display: flex;
+                margin: 10px 0;
+                img {
+                    margin-right: 15px;
+                }
+                .text {
+                    p {
+                        text-align: left;
+                        padding-bottom: 5px;
+                    }
+                }
+            }
+            .total {
+                &-sum {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 5px 0;
+                }
+            }
+        }
+    }
+}
+</style>

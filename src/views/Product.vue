@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <div class="product-wrap">
     <div class="product">
       <div class="product-left">
         <img src="@/assets/images/blog1.png" alt="" />
@@ -49,6 +50,7 @@
         magnam explicabo. Tenetur animi dolor excepturi cupiditate enim?
         Repellendus iste cupiditate eligendi.
       </p>
+    </div>
     </div>
   </div>
 </template>

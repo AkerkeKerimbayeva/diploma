@@ -14,13 +14,13 @@
               <router-link to="/menu">Мәзір</router-link>
             </li>
             <li class="px16-400">
-              <router-link to="/">Жеңілдіктер</router-link>
+              <router-link to="/hits">Жеңілдіктер</router-link>
             </li>
             <li class="px16-400">
               <router-link to="/">Бронь жасау</router-link>
             </li>
             <li class="px16-400">
-              <router-link to="/">Онлайн тапсырыс</router-link>
+              <router-link to="/order">Онлайн тапсырыс</router-link>
             </li>
             <li class="px16-400"><router-link to="/">Байланыс</router-link></li>
             <li class="px16-400">
@@ -35,6 +35,9 @@
           <div class="basket">
             <img src="../assets/images/icons/basket.png" alt="" />
           </div>
+          <router-link to="/sign-in">
+            <img class="sign" src="@/assets/images/icons/sign.png" alt="">
+          </router-link>
         </div>
       </div>
     </div>
