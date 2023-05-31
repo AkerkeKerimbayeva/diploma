@@ -20,7 +20,7 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
             Varius sed pharetra dictum neque massa congue
           </p>
-          <button class="button">Менюді көру</button>
+          <a href="/menu"><button class="button">Менюді көру</button></a>
         </div>
         <div class="main-right">
           <img

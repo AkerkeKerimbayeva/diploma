@@ -44,11 +44,30 @@
     &-left {
         display: flex;
         flex-direction: column;
-        p {
+        p, a {
             text-align: left;
         }
         &__desc {
             margin: 20px 0;
+        }
+    }
+}
+.modal {
+    &-title {
+        padding-bottom: 5px;
+        margin-top: 20px;
+    }
+    input {
+        width: 90%;
+        margin: 15px 0;
+        border-radius: 8px;
+    }
+    button {
+        background-color: #195A00;
+        color: #fff;
+        &:hover {
+            background-color: #6ed845;
+            border: 1px solid #6ed845;
         }
     }
 }

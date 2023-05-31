@@ -4,7 +4,7 @@
       <div class="head-bottom">
         <div class="head-bottom__nav">
           <div class="head-logo">
-            <img src="../assets/images/icons/Foodtuck.png" alt="" />
+            <router-link to="/"><img src="../assets/images/icons/Foodtuck.png" alt="" /></router-link>
           </div>
           <ul>
             <li class="px16-400">
@@ -20,11 +20,11 @@
               <router-link to="/">Бронь жасау</router-link>
             </li>
             <li class="px16-400">
-              <router-link to="/order">Онлайн тапсырыс</router-link>
+              <router-link to="" @click="isOpen = true">Кері қоңырау</router-link>
             </li>
             <li class="px16-400"><router-link to="/">Байланыс</router-link></li>
             <li class="px16-400">
-              <router-link to="/">Біз туралы</router-link>
+              <router-link to="/about-us">Біз туралы</router-link>
             </li>
           </ul>
         </div>
@@ -33,7 +33,7 @@
             <input class="input" placeholder="Іздеу..." type="text" />
           </div>
           <div class="basket">
-            <img src="../assets/images/icons/basket.png" alt="" />
+            <router-link to="/order"><img src="../assets/images/icons/basket.png" alt="" /></router-link>
           </div>
           <router-link to="/sign-in">
             <img class="sign" src="@/assets/images/icons/sign.png" alt="">
@@ -41,11 +41,32 @@
         </div>
       </div>
     </div>
+    <Modal :open="isOpen" @close="isOpen = !isOpen">
+      <div class="modal">
+        <p class="modal-title px24 fw500 green">
+          Кері қоңырауға тапсырыс беру
+        </p>
+        <p>Сізге жақын арада қайта қоңырау шаламыз!</p>
+        <input placeholder="Есіміңіз" type="text" class="input">
+        <input placeholder="Телефон нөміріңіз" type="text" class="input">
+        <button class="button">Жіберу</button>
+      </div>
+    </Modal>
   </div>
 </template>
 
 <script>
-export default {};
+import Modal from './modal/Modal.vue';
+import {ref} from 'vue'
+export default {
+components: {Modal},
+setup() {
+        const isOpen = ref(false);
+        return {
+        isOpen,
+        };
+    },
+};
 </script>
 
 <style lang="scss" scoped>

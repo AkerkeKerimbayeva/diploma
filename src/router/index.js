@@ -6,6 +6,7 @@ import Rebate from "../views/Rebate.vue"
 import Order from "../views/Order.vue"
 import Sign from "../views/Sign.vue"
 import Login from "../views/Login.vue"
+import About from "../views/About.vue"
 import "../assets/style/main.scss";
 
 const routes = [
@@ -43,6 +44,11 @@ const routes = [
     path: "/login-page",
     name: "Login",
     component: Login
+  },
+  {
+    path: "/about-us",
+    name: "About",
+    component: About
   },
 ];
 
