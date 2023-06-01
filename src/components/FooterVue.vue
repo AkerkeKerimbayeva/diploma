@@ -2,13 +2,13 @@
     <div class="foot">
         <div class="container foot-wrap">
             <div class="foot-left">
-                <p class="px16 fw400 white">Copyright © 2000-2020.logo.com. All rights reserved</p>
+                <p class="px16 fw400 white">ТОО Foodtuck. Барлық құқықтар қорғалған.</p>
             </div>
             <div class="foot-right">
                 <ul>
-                    <li><a href="">Privacy Policy</a></li>
-                    <li><a href="">Term of Use</a></li>
-                    <li><a href="">Partner</a></li>
+                    <li><a href="/menu">Мәзір</a></li>
+                    <li><a href="/contacts">Байланыс</a></li>
+                    <li><a href="/about-us">Біз туралы</a></li>
                 </ul>
             </div>
         </div>
@@ -37,6 +37,23 @@ export default {
             a {
                 text-decoration: none;
                 color: #fff;
+            }
+        }
+    }
+}
+@media (max-width: 1120px) {
+    .foot {
+        &-wrap {
+            flex-direction: column;
+        }
+        &-right {
+            margin-top: 20px;
+            ul {
+                flex-direction: column;
+                li {
+                    text-align: center;
+                    padding-bottom: 10px;
+                }
             }
         }
     }

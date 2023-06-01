@@ -3,7 +3,20 @@
     <div class="product-wrap">
     <div class="product">
       <div class="product-left">
-        <img src="@/assets/images/blog1.png" alt="" />
+        <swiper :navigation="navigation" :modules="modules" class="mySwiper">
+          <swiper-slide><img src="@/assets/images/blog1.png" alt="" /></swiper-slide>
+          <swiper-slide><img src="@/assets/images/blog2.png" alt="" /></swiper-slide>
+          <swiper-slide><img src="@/assets/images/blog3.png" alt="" /></swiper-slide>
+        </swiper>
+        <div class="nav">
+            <div class="swiper-button-prev">
+              <img src="@/assets/images/icons/left.jpg" alt="" />
+            </div>
+            <div class="swiper-button-next">
+              <img src="@/assets/images/icons/right.png" alt="" />
+            </div>
+          </div>
+        <!-- <img src="@/assets/images/blog1.png" alt="" /> -->
       </div>
       <div class="product-right">
         <p
@@ -56,7 +69,29 @@
 </template>
 
 <script>
-export default {};
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation } from 'swiper';
+export default {
+  components: {
+      Swiper,
+      SwiperSlide,
+    },
+    data() {
+      return {
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      }
+    },
+    setup() {
+      return {
+        modules: [Navigation],
+      };
+    },
+};
 </script>
 
 <style lang="scss" scoped>

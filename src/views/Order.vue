@@ -162,4 +162,30 @@ export default {
         }
     }
 }
+@media (max-width: 1120px) {
+    .order {
+        &-top {
+            background-position: bottom;
+            height: 200px;
+            &__title {
+                padding-top: 80px;
+            }
+        }
+        &-btm {
+            flex-direction: column;
+            &__left {
+                width: 100%;
+                &-item {
+                    width: 100%;
+                    input {
+                        width: 83%;
+                    }
+                }
+            }
+            &__right {
+                width: 100%;
+            }
+        }
+    }
+}
 </style>

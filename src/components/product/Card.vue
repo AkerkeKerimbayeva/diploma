@@ -55,4 +55,9 @@ export default {};
     }
   }
 }
+@media (max-width: 1120px) {
+  .card {
+    height: 240px;
+  }
+}
 </style>

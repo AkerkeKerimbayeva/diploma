@@ -56,9 +56,11 @@
               Lorem ipsum dolor sit amet, consectetur adipiscing elit
             </p>
           </div>
-          <button class="button">Толығырақ</button>
+          <a href="/menu"><button class="button">Толығырақ</button></a>
         </div>
-        <div class="best-right">
+        <div class="best-right" data-aos="fade-left"
+            data-aos-easing="linear"
+            data-aos-duration="1500">
           <img
             class="best-right__img"
             src="@/assets/images/foody1.png"
@@ -74,15 +76,25 @@
         <div class="choice-wrap">
           <p class="choice-title px48 fw700">Өзіңіздің талғауыңызға сай</p>
           <div class="choice-cards">
-            <img src="@/assets/images/choose1.png" alt="" />
-            <img src="@/assets/images/choose2.png" alt="" />
-            <img src="@/assets/images/choose3.png" alt="" />
-            <img src="@/assets/images/choose4.png" alt="" />
+            <img data-aos="fade-up-right"
+            data-aos-easing="linear"
+            data-aos-duration="1500" src="@/assets/images/choose1.png" alt="" />
+            <img data-aos="fade-up-right"
+            data-aos-easing="linear"
+            data-aos-duration="1500" src="@/assets/images/choose2.png" alt="" />
+            <img data-aos="fade-up-left"
+            data-aos-easing="linear"
+            data-aos-duration="1500" src="@/assets/images/choose3.png" alt="" />
+            <img data-aos="fade-up-left"
+            data-aos-easing="linear"
+            data-aos-duration="1500" src="@/assets/images/choose4.png" alt="" />
           </div>
         </div>
       </section>
       <section class="taste">
-        <div class="taste-left">
+        <div class="taste-left" data-aos="flip-left"
+            data-aos-easing="linear"
+            data-aos-duration="1500">
           <div class="taste-left__top">
             <img src="@/assets/images/taste1.png" alt="" />
             <img src="@/assets/images/taste2.png" alt="" />
@@ -139,22 +151,30 @@
       </section>
       <section class="numbers">
         <div class="numbers-item">
-          <img src="@/assets/images/num1.png" alt="" />
+          <img data-aos="zoom-in"
+            data-aos-easing="linear"
+            data-aos-duration="1500" src="@/assets/images/num1.png" alt="" />
           <p class="numbers-item-text px24 fw700">Үздік аспаздар</p>
           <p class="px48 fw700">420</p>
         </div>
         <div class="numbers-item">
-          <img src="@/assets/images/num2.svg" alt="" />
+          <img data-aos="zoom-in"
+            data-aos-easing="linear"
+            data-aos-duration="1500" src="@/assets/images/num2.svg" alt="" />
           <p class="numbers-item-text px24 fw700">Сапалы азық-түлік</p>
           <p class="px48 fw700">320</p>
         </div>
         <div class="numbers-item">
-          <img src="@/assets/images/num3.svg" alt="" />
+          <img data-aos="zoom-in"
+            data-aos-easing="linear"
+            data-aos-duration="1500" src="@/assets/images/num3.svg" alt="" />
           <p class="numbers-item-text px24 fw700">Тәжірибе</p>
           <p class="px48 fw700">30+</p>
         </div>
         <div class="numbers-item">
-          <img src="@/assets/images/num4.png" alt="" />
+          <img data-aos="zoom-in"
+            data-aos-easing="linear"
+            data-aos-duration="1500" src="@/assets/images/num4.png" alt="" />
           <p class="numbers-item-text px24 fw700">Тұрақты клиенттер</p>
           <p class="px48 fw700">1000</p>
         </div>

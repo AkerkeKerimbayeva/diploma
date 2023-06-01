@@ -99,3 +99,24 @@ div {
     line-height: 36px;
     font-weight: 500;
 }
+@media (max-width: 1120px) {
+    .m-none {
+        display: none !important;
+    }
+    .px60 {
+        font-size: 38px;
+        line-height: 42px;
+    }
+    .px48 {
+        font-size: 32px;
+    }
+    .price {
+        font-size: 24px;
+        line-height: 28px;
+    }
+}
+@media (min-width: 1120px) {
+    .d-none {
+        display: none !important;
+    }
+}

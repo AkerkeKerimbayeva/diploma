@@ -39,5 +39,12 @@ export default {
         margin-top: 20px;
     }
 }
-
+@media (max-width: 1120px) {
+    .sign {
+        width: 100%;
+        .input {
+            width: 90%;
+        }
+    }
+}
 </style>

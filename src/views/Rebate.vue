@@ -69,4 +69,19 @@ export default {
 .rebate {
     margin-top: 80px;
 }
+@media (max-width: 1120px) {
+    .hits, .rebate {
+        &-card {
+            flex-direction: column;
+            img {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+            }
+            &__text {
+                width: 100%;
+            }
+        }
+    }
+}
 </style>
