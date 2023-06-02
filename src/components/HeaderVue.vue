@@ -17,7 +17,7 @@
                 <router-link to="/hits">Жеңілдіктер</router-link>
               </li>
               <li class="px16-400" @click="isMobile = false">
-                <router-link to="/">Бронь жасау</router-link>
+                <router-link to="/reservation">Бронь жасау</router-link>
               </li>
               <li class="px16-400">
                 <router-link to="" @click="isOpen = true">Кері қоңырау</router-link>
@@ -42,7 +42,7 @@
               <router-link to="/hits">Жеңілдіктер</router-link>
             </li>
             <li class="px16-400">
-              <router-link to="/">Бронь жасау</router-link>
+              <router-link to="/reservation">Бронь жасау</router-link>
             </li>
             <li class="px16-400">
               <router-link to="" @click="isOpen = true">Кері қоңырау</router-link>

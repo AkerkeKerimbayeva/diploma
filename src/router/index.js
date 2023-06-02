@@ -8,6 +8,8 @@ import Sign from "../views/Sign.vue"
 import Login from "../views/Login.vue"
 import About from "../views/About.vue"
 import Contacts from "../views/Contacts.vue"
+import Reservation from "../views/Reservation.vue"
+import account from "../views/account.vue"
 import "../assets/style/main.scss";
 
 const routes = [
@@ -55,6 +57,16 @@ const routes = [
     path: "/contacts",
     name: "Contacts",
     component: Contacts
+  },
+  {
+    path: "/reservation",
+    name: "Reservation",
+    component: Reservation
+  },
+  {
+    path: "/account",
+    name: "account",
+    component: account
   },
 ];
 
