@@ -5,15 +5,32 @@
     </div>
     <div class="menu-box">
       <div class="menu-cards">
-        <Card class="menu-card" />
-        <Card class="menu-card" />
-        <Card class="menu-card" />
-        <Card class="menu-card" />
-        <Card class="menu-card" />
-        <Card class="menu-card" />
+        <Card
+          v-for="(item, index) in product.products"
+          :key="index"
+          :products="item"
+          class="menu-card"
+        />
       </div>
       <div class="menu-navbar">
-        <category />
+        <div class="category">
+          <div class="category-title fw700 px24">Категориялар</div>
+          <div class="category-links">
+            <div
+              class="category-links__item"
+              v-for="(it, index) in product.products"
+              :key="index"
+            >
+              <input
+                v-model="category_id"
+                :value="it.id"
+                type="checkbox"
+                name=""
+              />
+              <label>{{ it.name }}</label>
+            </div>
+          </div>
+        </div>
         <div class="sort">
           <div class="sort-title">Баға бойынша сұрыптау</div>
           <input type="range" name="" id="" />
@@ -26,12 +43,59 @@
 <script>
 import Card from "@/components/product/Card.vue";
 import Category from "../components/product/Category.vue";
+import axios from "axios";
 export default {
   components: { Card, Category },
+  data() {
+    return {
+      product: [],
+      category_id: [],
+    };
+  },
+  created() {
+    this.getProduct();
+  },
+  methods: {
+    getProduct() {
+      axios
+        .get(`products?category_id=${this.category_id}&price=[2000, 6000]`)
+        .then((res) => {
+          if (res.status === 200) {
+            this.product = res.data;
+          }
+        });
+    },
+  },
+  watch: {
+    category_id() {
+      this.getProduct(this.category_id);
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+.category {
+  &-title {
+    margin-bottom: 15px;
+  }
+  &-links {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    &__item {
+      display: flex;
+      padding: 5px 0;
+      label {
+        font-size: 18px;
+        margin-left: 10px;
+      }
+      input {
+        width: 20px;
+      }
+    }
+  }
+}
 .menu {
   padding: 80px 0;
   &-cards {

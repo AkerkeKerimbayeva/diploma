@@ -24,7 +24,7 @@ const routes = [
     component: MenuPage
   },
   {
-    path: "/meal",
+    path: "/meal/:slug",
     name: "Meal",
     component: Product
   },
@@ -36,7 +36,10 @@ const routes = [
   {
     path: "/order",
     name: "order",
-    component: Order
+    component: Order,
+    meta: {
+      requiresAuth: true
+  }
   },
   {
     path: "/sign-in",
@@ -61,18 +64,40 @@ const routes = [
   {
     path: "/reservation",
     name: "Reservation",
-    component: Reservation
+    component: Reservation,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/account",
     name: "account",
-    component: account
+    component: account,
+    meta: {
+      requiresAuth: true
+    }
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  // document.title = `${process.env.VUE_APP_TITLE} - ${to.name}`;
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    if (localStorage.getItem('access_token')) {
+      console.log('asasxs');
+      next()
+    } else {
+      console.log('dddd');      
+      next({ name: 'Login' })
+      return
+    }
+  } else {
+    next()
+  }
 });
 
 export default router;

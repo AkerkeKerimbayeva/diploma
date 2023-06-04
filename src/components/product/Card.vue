@@ -1,12 +1,16 @@
 <template>
-  <div class="card">
-    <router-link to="/meal">
-      <img src="@/assets/images/burger.png" alt="" />
+  <div class="card" v-if="products">
+    <router-link :to="{ path: `${'/meal/' + products.slug}` }">
+      <img
+        v-if="products.productId[0]?.image"
+        :src="cdn + products.productId[0].image"
+        alt=""
+      />
     </router-link>
     <div class="card-btm">
       <div class="card-btm__left">
-        <p class="px18 fw700">Бургер</p>
-        <p class="price green fw700">2 000</p>
+        <p class="px18 fw700">{{ products.name }}</p>
+        <p class="price green fw700">{{ products.price }} ₸</p>
       </div>
       <img src="@/assets/images/icons/basket.png" class="basket" alt="" />
     </div>
@@ -14,7 +18,13 @@
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+export default {
+  props: ["products"],
+  computed: {
+    ...mapState(["cdn"]),
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -30,6 +40,8 @@ export default {};
     img {
       transition: 0.4s;
       width: 100%;
+      height: 227px;
+      object-fit: cover;
     }
   }
   &-btm {
