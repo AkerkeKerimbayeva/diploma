@@ -75,7 +75,35 @@
         </div>
         <div class="head-bottom__right">
           <div class="search m-none">
-            <input class="input" placeholder="Іздеу..." type="text" />
+            <input ref="search" class="input" placeholder="Іздеу..." type="text" v-model="search_input"
+          @keyup="searchHandle($event)" />
+          <div class="dropdown-res m_none">
+          <div v-if="isResult">
+            <div class="search-result">
+              <div
+                class="search-result__wrap"
+                v-if="SEARCH_RESULT.length"
+              >
+                <router-link
+                  :to="{
+                    path: `/meal/${result.slug}`,
+                  }"
+                  v-for="result in SEARCH_RESULT"
+                  :key="result.id"
+                  @click="activeSearch = false"
+                >
+                  <span v-html="result.name"></span>
+                </router-link>
+              </div>
+              <div
+                class="search-result__wrap"
+                v-else
+              >
+                Нәтиже жоқ!
+              </div>
+            </div>
+          </div>
+        </div>
           </div>
           <div class="basket">
             <router-link to="/order"
@@ -117,6 +145,7 @@
         <button @click="sendCall" class="button">Жіберу</button>
       </div>
     </Modal>
+    <div class="visible" v-if="isResult" @click="isResult = false"></div>
   </div>
 </template>
 
@@ -130,6 +159,8 @@ export default {
   data() {
     return {
       isMobile: false,
+      isResult: false,
+      activeSearch: false,
     };
   },
   setup() {
@@ -139,7 +170,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["checkAuth", "logout"]),
+    ...mapActions(["checkAuth", "logout", "GET_SEARCH_RESULT",]),
     logOut() {
       this.$store.dispatch("logout");
       this.$store.dispatch("checkAuth");
@@ -164,12 +195,28 @@ export default {
           }
         });
     },
+    async searchHandle(e) {
+      let q = e.target.value;
+      if (q.length >= 3) {
+        await this.GET_SEARCH_RESULT({
+          text: q,
+          lang: localStorage.getItem("lang"),
+        })
+        .then(() => {
+          this.isResult = true;
+        });
+      } else {
+        this.isResult = false;
+      }
+      console.log(this.SEARCH_RESULT);
+    },
   },
   computed: {
     ...mapGetters({
       isAuth: "getIsAuth",
       isUnAuth: "getUnAuth",
       getUser: "getUser",
+      SEARCH_RESULT: "SEARCH_RESULT"
     }),
   },
 };
@@ -177,4 +224,12 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/style/home.scss";
+.visible {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 11;
+}
 </style>

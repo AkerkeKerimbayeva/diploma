@@ -42,22 +42,7 @@
                     </div>
                 </div>
                 <div class="order-btm__right">
-                    <div class="card">
-                        <img src="@/assets/images/meal3.png" alt="">
-                        <div class="text">
-                            <p class="px18 fw500">Chicken Tikka Kabab</p>
-                            <p>150 gm net</p>
-                            <p>50$</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="@/assets/images/meal3.png" alt="">
-                        <div class="text">
-                            <p class="px18 fw500">Chicken Tikka Kabab</p>
-                            <p>150 gm net</p>
-                            <p>50$</p>
-                        </div>
-                    </div>
+                    <!-- {{ order }} -->
                     <div class="card">
                         <img src="@/assets/images/meal3.png" alt="">
                         <div class="text">
@@ -79,10 +64,6 @@
                             <p>Жеңілдік</p>
                             <p>10 000</p>
                         </div>
-                        <!-- <div class="total-sum">
-                            <p>Tax</p>
-                            <p>10 000</p>
-                        </div> -->
                         <hr>
                         <div class="total-sum">
                             <p>Толық сумма</p>
@@ -97,8 +78,31 @@
 </template>
 
 <script>
+import axios from "axios"
 export default {
-
+data() {
+    return {
+        order: []
+    }
+},
+methods: {
+    getOrder() {
+        axios.post("order")
+        .then((res) => {
+            if (res.status === 200) {
+                alert("Сіз сәтті түрде тапсырыс бердіңіз!");
+                this.password = "";
+                this.email = "";
+                this.$router.push("/account");
+                localStorage.setItem("access_token", res.data.accessToken);
+                this.checkAuth();
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+}
 }
 </script>
 

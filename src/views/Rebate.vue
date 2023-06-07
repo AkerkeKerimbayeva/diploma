@@ -1,47 +1,50 @@
 <template>
   <div class="container">
-    <div class="hits">
-        <p class="hits-title px32 fw500 green">Жеңілдіктер</p>
-        <div class="hits-card">
+    <div class="hits" v-if="disc[0]">
+        <p class="hits-title px32 fw500 green">{{ disc[0].name }}</p>
+        <div class="hits-card" v-for="(item, index) in disc[0].disCategory" :key="index">
             <img src="@/assets/images/taste1.png" alt="">
             <div class="hits-card__text">
-                <p class="px24 fw500 title">Комбо на двоих</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt mollitia cupiditate cum. Aliquid, sit tenetur ipsum laboriosam sapiente unde iusto dicta placeat corrupti deleniti eum omnis incidunt asperiores fugiat ipsa!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt mollitia cupiditate cum. Aliquid, sit tenetur ipsum laboriosam sapiente unde iusto dicta placeat corrupti deleniti eum omnis incidunt asperiores fugiat ipsa!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt mollitia cupiditate cum. Aliquid, sit tenetur ipsum laboriosam sapiente unde iusto dicta placeat corrupti deleniti eum omnis incidunt asperiores fugiat ipsa!</p>
-            </div>
-        </div>
-        <div class="hits-card">
-            <img src="@/assets/images/taste2.png" alt="">
-            <div class="hits-card__text">
-                <p class="px24 fw500 title">Бизнес ланч между 13:00 - 16:00</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus voluptates quod necessitatibus ratione accusantium voluptate, ea nesciunt at aperiam eveniet iusto rem nihil, excepturi nobis molestias recusandae quae id voluptas?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus voluptates quod necessitatibus ratione accusantium voluptate, ea nesciunt at aperiam eveniet iusto rem nihil, excepturi nobis molestias recusandae quae id voluptas?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus voluptates quod necessitatibus ratione accusantium voluptate, ea nesciunt at aperiam eveniet iusto rem nihil, excepturi nobis molestias recusandae quae id voluptas?</p>
+                <p class="px24 fw500 title" v-html="item.name"></p>
+                <p>{{ item.mini_desc }}</p>
             </div>
         </div>
     </div>
-    <div class="rebate">
-        <p class="rebate-title px32 fw500 green">
-            Хит блюда
-        </p>
+    <div class="rebate" v-if="disc[1]">
+        <p class="rebate-title px32 fw500 green">{{ disc[1].name }}</p>
         <div class="rebate-card">
-            <div class="rebate-card__text">
-                <p class="px24 fw500 title">Сэндвич с курицей</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus ad deleniti, eius ipsum nemo iusto voluptatum nam! Pariatur, minus facilis, quo, ullam nihil eaque consequuntur incidunt rem distinctio impedit iure.''</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus ad deleniti, eius ipsum nemo iusto voluptatum nam! Pariatur, minus facilis, quo, ullam nihil eaque consequuntur incidunt rem distinctio impedit iure.''</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus ad deleniti, eius ipsum nemo iusto voluptatum nam! Pariatur, minus facilis, quo, ullam nihil eaque consequuntur incidunt rem distinctio impedit iure.''</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus ad deleniti, eius ipsum nemo iusto voluptatum nam! Pariatur, minus facilis, quo, ullam nihil eaque consequuntur incidunt rem distinctio impedit iure.''</p>
+            <div class="rebate-card__text" v-for="(item, index) in disc[1].disCategory" :key="index">
+                <p class="px24 fw500 title">{{ item.name }}</p>
+                <p>{{ item.mini_desc }}</p>
             </div>
-            <img src="@/assets/images/meal2.png" alt="">
+            <img src="@/assets/images/hit.png" alt="">
         </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
-
+data() {
+    return {
+        disc: [],
+    }
+},
+created() {
+    this.getDiscount();
+},
+methods: {
+    getDiscount() {
+        axios.get("get/discounts")
+        .then((res) => {
+            this.disc = res.data
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+}
 }
 </script>
 
@@ -53,10 +56,10 @@ export default {
         width: 100%;
         margin: 50px 0;
         img {
-            width: 30%;
+            width: 20%;
         }
         &__text {
-            width: 66%;
+            width: 76%;
             .title {
                 margin-bottom: 25px;
             }

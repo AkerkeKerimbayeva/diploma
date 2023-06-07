@@ -5,82 +5,50 @@
                 Үстелді алдын ала брондау
             </p>
             <div class="res-cards">
-                <div class="res-cards__item" @click="isOpen = true">
-                    <p class="status-active px18">Бос үстел</p>
-                    <!-- <p class="status-active px18" style="color: red;">Бос емес</p> -->
-                    <img class="res-cards__item-img" src="@/assets/images/table2.webp" alt="">
+                <div class="res-cards__item" v-for="(item, index) in table" :key="index" @click="(isOpen = true),(selected = item)">
+                    <p class="status-active px18" v-if="item.reserv" style="color: red;">Бос емес</p>
+                    <p class="status-active px18" v-else>Бос үстел</p>
+                    <p class="px18" style="padding: 5px 0 10px 0;">{{ item.name }}</p>
+                    <img class="res-cards__item-img" :src="cdn + item.image" alt="">
                     <div class="text">
-                        <p class="px24 fw600">№1</p>
-                        <p class="text-second px18 fw500"><img src="@/assets/images/icons/people.png" alt=""> 2</p>
-                    </div>
-                </div>
-                <div class="res-cards__item">
-                    <!-- <p class="status-active px18">Бос үстел</p> -->
-                    <p class="status-active px18" style="color: red;">Бос емес</p>
-                    <img class="res-cards__item-img" src="@/assets/images/table4.webp" alt="">
-                    <div class="text">
-                        <p class="px24 fw600">№2</p>
-                        <p class="text-second px18 fw500"><img src="@/assets/images/icons/people.png" alt=""> 4</p>
-                    </div>
-                </div>
-                <div class="res-cards__item">
-                    <p class="status-active px18">Бос үстел</p>
-                    <!-- <p class="status-active px18" style="color: red;">Бос емес</p> -->
-                    <img class="res-cards__item-img" src="@/assets/images/table2.webp" alt="">
-                    <div class="text">
-                        <p class="px24 fw600">№3</p>
-                        <p class="text-second px18 fw500"><img src="@/assets/images/icons/people.png" alt=""> 2</p>
-                    </div>
-                </div>
-                <div class="res-cards__item">
-                    <p class="status-active px18">Бос үстел</p>
-                    <!-- <p class="status-active px18" style="color: red;">Бос емес</p> -->
-                    <img class="res-cards__item-img" src="@/assets/images/table6.jpg" alt="">
-                    <div class="text">
-                        <p class="px24 fw600">№4</p>
-                        <p class="text-second px18 fw500"><img src="@/assets/images/icons/people.png" alt=""> 6</p>
-                    </div>
-                </div>
-                <div class="res-cards__item">
-                    <p class="status-active px18">Бос үстел</p>
-                    <!-- <p class="status-active px18" style="color: red;">Бос емес</p> -->
-                    <img class="res-cards__item-img" src="@/assets/images/table2.webp" alt="">
-                    <div class="text">
-                        <p class="px24 fw600">№5</p>
-                        <p class="text-second px18 fw500"><img src="@/assets/images/icons/people.png" alt=""> 2</p>
-                    </div>
-                </div>
-                <div class="res-cards__item">
-                    <!-- <p class="status-active px18">Бос үстел</p> -->
-                    <p class="status-active px18" style="color: red;">Бос емес</p>
-                    <img class="res-cards__item-img" src="@/assets/images/table6.jpg" alt="">
-                    <div class="text">
-                        <p class="px24 fw600">№6</p>
-                        <p class="text-second px18 fw500"><img src="@/assets/images/icons/people.png" alt=""> 6</p>
-                    </div>
-                </div>
-                <div class="res-cards__item">
-                    <!-- <p class="status-active px18">Бос үстел</p> -->
-                    <p class="status-active px18" style="color: red;">Бос емес</p>
-                    <img class="res-cards__item-img" src="@/assets/images/table2.webp" alt="">
-                    <div class="text">
-                        <p class="px24 fw600">№7</p>
-                        <p class="text-second px18 fw500"><img src="@/assets/images/icons/people.png" alt=""> 2</p>
+                        <p class="px24 fw600">№{{ item.id }}</p>
+                        <p class="text-second px18 fw500"><img src="@/assets/images/icons/people.png" alt=""> {{ item.number_seats }}</p>
                     </div>
                 </div>
             </div>
         </div>
         <Modal :open="isOpen" @close="isOpen = !isOpen">
-            <div class="modal">
+            <div class="modal" v-if="selected">
                 <p class="modal-title px24 fw500 green">
-                    №1 үстелді брондау
+                    №{{ selected.id }} үстелді брондау
                 </p>
-                <p class="modal-desc"> Алдын ала төлем: <span class="fw500 px18">10 000 тг</span></p>
-                <img class="modal-img" src="@/assets/images/table2.webp" alt="">
-                <input type="text" placeholder="Карта нөмірін еңгізіңіз" class="input">
+                <p class="modal-desc"> Алдын ала төлем: <span class="fw500 px18">{{ selected.prepayment }} тг</span></p>
+                <p class="modal-desc"> Орын саны: <span class="fw500 px18">{{ selected.number_seats }}</span></p>
+                <img class="modal-img" :src="cdn + selected.image" alt="">
+                <div class="date">
+                    <p style="padding: 15px 0;">Күні: <span class="px18 fw500 green" style="text-decoration: underline;">{{currentDate()}}</span></p>
+                    <div class="time">
+                        <label for="">Басталу уақыты:</label>
+                        <input v-model="startTime" type="time" name="" id="">
+                    </div>
+                    <div class="time">
+                        <label for="">Аяқталу уақыты:</label>
+                        <input v-model="endTime" type="time" name="" id="">
+                    </div>
+                </div>
+                <div class="pay">
+                    <p>Төлем түрін таңдаңыз</p>
+                    <select class="input" v-model="payment" name="" id="">
+                        <option value="Қолма-қол ақшамен">Қолма-қол ақшамен</option>
+                        <option value="Kaspi QR">Kaspi QR</option>
+                        <option value="Карточкамен">Карточкамен</option>
+                    </select>
+                </div>
+                <p style="display: none;">{{ table_id = selected.id }}</p>
+                <!-- <input type="text" placeholder="Карта нөмірін еңгізіңіз" class="input">
                 <input type="text" placeholder="CVV код еңгізіңіз" class="input">
-                <input type="text" placeholder="Аты жөніңізді еңгізіңіз" class="input">
-                <button class="button">Төлем жасау</button>
+                <input type="text" placeholder="Аты жөніңізді еңгізіңіз" class="input"> -->
+                <button @click="orderTable" class="button">Төлем жасау</button>
             </div>
         </Modal>
     </div>
@@ -89,13 +57,76 @@
 <script>
 import Modal from '@/components/modal/Modal.vue';
 import {ref} from "vue";
+import axios from "axios";
+import { mapState } from 'vuex';
 export default {
 components: {Modal},
+data() {
+    return {
+        table: [],
+        sum: 10000,
+        table_id: null,
+        startTime: null,
+        endTime: null,
+        payment: null,
+    }
+},
+created() {
+    this.getTable()
+},
+methods: {
+    getTable() {
+        axios.get("get/tables?startTime=2023-06-06 12:00&endTime=2023-06-06 15:00")
+        .then((res) => {
+            this.table = res.data
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    },
+    async orderTable() {
+        await axios.post('table',
+            {
+                table_id: this.table_id,
+                sum: this.sum,
+                startTime: this.startTime,
+                endTime: this.endTime,
+                payment: this.payment,
+            },
+            {
+                headers: {
+                Authorization: localStorage.getItem("access_token")
+                ? `Bearer ${localStorage.getItem("access_token")}`
+                : null,
+                },
+            }
+        )
+        .then((res) => {
+          if (res.status === 200) {
+            alert("Сәтті жіберілді!");
+            this.isOpen = false;
+            localStorage.setItem("access_token", res.data.accessToken);
+          }
+        })
+        .catch((error) => {
+          alert("Қате еңгізілген деректер!");
+          console.error("There was an error!", error);
+        });
+    },
+    currentDate() {
+      const current = new Date();
+      const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+      return date;
+    }
+},
 setup() {
     const isOpen = ref(false);
     return {
         isOpen,
     }
+},
+computed: {
+    ...mapState(["cdn"])
 }
 }
 </script>
@@ -104,7 +135,7 @@ setup() {
 .modal {
     &-img {
         width: 90%;
-        height: 300px;
+        height: 240px;
         object-fit: cover;
     }
     &-desc {
@@ -125,6 +156,18 @@ setup() {
     input {
         width: 90%;
         margin: 10px 0;
+    }
+    .time {
+        input {
+            width: 100%;
+            padding: 10px 0;
+            border: 1px solid #195A00;
+        }
+    }
+    .pay {
+        .input {
+            width: 100%;
+        }
     }
 }
 .res {

@@ -34,11 +34,6 @@
           <hr />
           <p class="price">{{ product.price }}</p>
           <div class="product-right__box">
-            <div class="product-right__piece">
-              <span>-</span>
-              <span>1</span>
-              <span>+</span>
-            </div>
             <button class="button">Себетке қосу</button>
           </div>
           <div class="share">
@@ -98,6 +93,11 @@ export default {
       modules: [Navigation],
     };
   },
+  watch: {
+    $route() {
+      this.getProduct();
+    }
+  }
 };
 </script>
 

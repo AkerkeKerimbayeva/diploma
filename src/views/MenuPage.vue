@@ -18,7 +18,7 @@
           <div class="category-links">
             <div
               class="category-links__item"
-              v-for="(it, index) in product.products"
+              v-for="(it, index) in category"
               :key="index"
             >
               <input
@@ -33,7 +33,10 @@
         </div>
         <div class="sort">
           <div class="sort-title">Баға бойынша сұрыптау</div>
-          <input type="range" name="" id="" />
+          <div class="sort-btm">
+            <input v-model="min_price" type="text">
+            <input v-model="max_price" type="text">
+          </div>
         </div>
       </div>
     </div>
@@ -42,34 +45,53 @@
 
 <script>
 import Card from "@/components/product/Card.vue";
-import Category from "../components/product/Category.vue";
+// import Category from "../components/product/Category.vue";
 import axios from "axios";
 export default {
-  components: { Card, Category },
+  components: { Card },
   data() {
     return {
       product: [],
       category_id: [],
+      category: [],
+      min_price: 0,
+      max_price: 20000
     };
   },
   created() {
     this.getProduct();
+    this.getCategory();
   },
   methods: {
     getProduct() {
       axios
-        .get(`products?category_id=${this.category_id}&price=[2000, 6000]`)
+        .get(`products?category_id=${this.category_id}&price=[${this.min_price}, ${this.max_price}]`)
         .then((res) => {
           if (res.status === 200) {
             this.product = res.data;
           }
         });
     },
+    getCategory() {
+      axios.get("get/categories")
+      .then((res) => {
+        this.category = res.data
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    }
   },
   watch: {
     category_id() {
       this.getProduct(this.category_id);
     },
+    min_price() {
+      this.getProduct(this.min_price)
+    },
+    max_price() {
+      this.getProduct(this.max_price)
+    }
   },
 };
 </script>
@@ -116,6 +138,17 @@ export default {
 }
 .sort {
   margin-top: 25px;
+  &-btm {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 15px;
+    input {
+      width: 45%;
+      padding: 5px;
+      border: 1px solid #195a00;
+    }
+  }
 }
 @media (max-width: 1120px) {
   .menu {

@@ -30,8 +30,9 @@
                 <p>Жеткізілу уақыты: <span v-html="item.createdAt"></span></p>
               </div>
               <div class="product" v-for="it in item.orderId" :key="it">
-                <router-link :to="{ path: `${'product/' + it.product_id}` }">
+                <!-- <router-link :to="{ path: `${'meal/' + it.product_id}` }"> -->
                   <!-- <img src="@/assets/images/burger.png" alt="" /> -->
+                  <a href="">
                   <p>
                     Бағасы: <span>{{ it.price }}</span>
                   </p>
@@ -44,7 +45,8 @@
                   <p>
                     Тағам атауы: <span>{{ it.productId.name }}</span>
                   </p>
-                </router-link>
+                </a>
+                <!-- </router-link> -->
               </div>
             </div>
           </div>

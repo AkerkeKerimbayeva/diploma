@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-// import axios from "axios";
+import axios from "axios";
 
 export default createStore({
     state: {
@@ -7,12 +7,14 @@ export default createStore({
         isAuth: false,
         unAuth: false,
         userI: [],
-        cdn: "https://admin-foodtuck.devup.kz"
+        cdn: "https://admin-foodtuck.devup.kz",
+        searchData: null,
     },
     getters: {
         getUnAuth: (state) => state.unAuth,
         getIsAuth: (state) => state.isAuth,
         getUser: (state) => state.setUser,
+        SEARCH_RESULT: (state) => state.searchData 
     },
     mutations: {
         SET_USER(state, user) {
@@ -27,6 +29,9 @@ export default createStore({
         setUser(state, userI) {
             state.setUser = userI;
         },
+        SET_SEARCH(state, result) {
+            state.searchData = result
+        },
     },
     actions: {
         checkAuth({ commit, state }) {
@@ -38,6 +43,16 @@ export default createStore({
             localStorage.removeItem("access_token");
             commit("SET_UN_AUTH", true);
             commit("SET_AUTH", false);
-          },
+        },
+        async GET_SEARCH_RESULT({commit}, {text}) {
+            let result = await axios
+            .get('get/' + 'search', {
+                params: {
+                  text: text
+                }
+            })
+            console.log("searchData",result.data)
+            commit('SET_SEARCH', result.data)
+        },
     },
 });
