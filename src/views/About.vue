@@ -179,7 +179,6 @@ export default {
     z-index: 110;
     height: 100%;
     opacity: 0.8;
-    background-color: #c1c4ff;
 }
 .review {
     margin: 50px 0 100px 0;
