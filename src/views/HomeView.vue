@@ -3,13 +3,14 @@
     <div class="container">
       <section class="main">
         <div class="main-left">
+          <p></p>
           <p
             class="px60 fw700 black"
             data-aos-duration="1000"
             data-aos="fade-right"
           >
             Жылдам және <br />
-            Сапалы тағам <br />
+            сапалы тағам <br />
             дайындау өнері
           </p>
           <p

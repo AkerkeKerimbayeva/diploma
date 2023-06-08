@@ -21,7 +21,7 @@
           class="order"
           :isSelected="selectedNewsTab === 'Менің тапсырыстарым'"
         >
-          <div class="order-title fw500 px24 green">Тапсырыстар:</div>
+          <div class="order-title fw500 px24 green">Тағам тапсырыстары:</div>
           <div class="order-wrap">
             <div class="order-card" v-for="(item, index) in ord" :key="index">
               <div class="text">
@@ -50,6 +50,35 @@
               </div>
             </div>
           </div>
+          <div class="order-title fw500 px24 green">Орын тапсырыстары:</div>
+          <div class="order-wrap">
+            <div class="order-card" v-for="(item, index) in table" :key="index">
+              <div class="text">
+                <p>Статус: <span v-html="item.status"></span></p>
+                <p>Төлем түрі: <span v-html="item.payment"></span></p>
+                <p>Жеткізілу уақыты: <span v-html="item.createdAt"></span></p>
+              </div>
+              <div class="product" v-for="it in item.orderId" :key="it">
+                <!-- <router-link :to="{ path: `${'meal/' + it.product_id}` }"> -->
+                  <img :src="it.tableId.image" alt="" />
+                  <a href="">
+                  <p>
+                    Алдын ала төлем: <span>{{ it.tableId.prepayment }}</span>
+                  </p>
+                  <p>
+                    Басталу уақыты: <span>{{ it.startTime }}</span>
+                  </p>
+                  <p>
+                    Аяқталу уақыты: <span>{{ it.endTime }}</span>
+                  </p>
+                  <p>
+                    Орын: <span>{{ it.tableId.name }}</span>
+                  </p>
+                </a>
+                <!-- </router-link> -->
+              </div>
+            </div>
+          </div>
         </tab-block>
       </div>
     </div>
@@ -60,17 +89,20 @@
 import accountTab from "@/components/tab/accountTab.vue";
 import tabBlock from "@/components/tab/tabBlock.vue";
 import axios from "axios";
+import { mapState } from "vuex";
 export default {
   components: { accountTab, tabBlock },
   data() {
     return {
       ord: [],
+      table: [],
       selectedNewsTab: "Менің жеке мәліметтерім",
       tabItems: ["Менің жеке мәліметтерім", "Менің тапсырыстарым"],
     };
   },
   created() {
     this.getOrder();
+    this.getTable()
   },
   methods: {
     selectNewsTab(tab) {
@@ -89,6 +121,19 @@ export default {
           this.ord = res.data;
         });
     },
+    getTable() {
+      axios
+        .get("table", {
+          headers: {
+            Authorization: localStorage.getItem("access_token")
+              ? `Bearer ${localStorage.getItem("access_token")}`
+              : null,
+          },
+        })
+        .then((res) => {
+          this.table = res.data;
+        });
+    }
   },
 };
 </script>

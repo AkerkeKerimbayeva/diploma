@@ -4,11 +4,21 @@
             <p class="res-title px32 fw500 green">
                 Үстелді алдын ала брондау
             </p>
+            <div class="time-wrap">
+                <div class="time">
+                    <label for="">Басталу уақыты: {{ startTime }}</label>
+                    <input v-model="startTime" type="time" name="" id="">
+                </div>
+                <div class="time">
+                    <label for="">Аяқталу уақыты: {{ endTime }}</label>
+                    <input v-model="endTime" type="time" name="" id="">
+                </div>
+            </div>
             <div class="res-cards">
                 <div class="res-cards__item" v-for="(item, index) in table" :key="index" @click="(isOpen = true),(selected = item)">
                     <p class="status-active px18" v-if="item.reserv" style="color: red;">Бос емес</p>
                     <p class="status-active px18" v-else>Бос үстел</p>
-                    <p class="px18" style="padding: 5px 0 10px 0;">{{ item.name }}</p>
+                    <p class="px18" style="padding: 5px 0 10px 0;">{{ item.name }} №{{ item.id }}</p>
                     <img class="res-cards__item-img" :src="cdn + item.image" alt="">
                     <div class="text">
                         <p class="px24 fw600">№{{ item.id }}</p>
@@ -27,14 +37,14 @@
                 <img class="modal-img" :src="cdn + selected.image" alt="">
                 <div class="date">
                     <p style="padding: 15px 0;">Күні: <span class="px18 fw500 green" style="text-decoration: underline;">{{currentDate()}}</span></p>
-                    <div class="time">
+                    <!-- <div class="time">
                         <label for="">Басталу уақыты:</label>
                         <input v-model="startTime" type="time" name="" id="">
                     </div>
                     <div class="time">
                         <label for="">Аяқталу уақыты:</label>
                         <input v-model="endTime" type="time" name="" id="">
-                    </div>
+                    </div> -->
                 </div>
                 <div class="pay">
                     <p>Төлем түрін таңдаңыз</p>
@@ -66,8 +76,8 @@ data() {
         table: [],
         sum: 10000,
         table_id: null,
-        startTime: null,
-        endTime: null,
+        startTime: '12:00',
+        endTime: '14:00',
         payment: null,
     }
 },
@@ -76,7 +86,7 @@ created() {
 },
 methods: {
     getTable() {
-        axios.get("get/tables?startTime=2023-06-06 12:00&endTime=2023-06-06 15:00")
+        axios.get(`get/tables?startTime=${this.currentDate() + " " + this.startTime}&endTime=${this.currentDate() + " " + this.endTime}`)
         .then((res) => {
             this.table = res.data
         })
@@ -89,8 +99,8 @@ methods: {
             {
                 table_id: this.table_id,
                 sum: this.sum,
-                startTime: this.startTime,
-                endTime: this.endTime,
+                startTime: this.currentDate() + " " + this.startTime,
+                endTime: this.currentDate() + " " + this.endTime,
                 payment: this.payment,
             },
             {
@@ -115,7 +125,7 @@ methods: {
     },
     currentDate() {
       const current = new Date();
-      const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+      const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
       return date;
     }
 },
@@ -127,11 +137,33 @@ setup() {
 },
 computed: {
     ...mapState(["cdn"])
+},
+watch: {
+    startTime() {
+        this.getTable();
+    },
+    endTime() {
+        this.getTable();
+    }
 }
 }
 </script>
 
 <style lang="scss" scoped>
+.time {
+    margin-bottom: 10px;
+    input {
+        width: 100%;
+        padding: 10px 0;
+        border: 1px solid #195A00;
+    }
+    &-wrap {
+        width: 300px;
+        margin: 50px 0;
+        display: flex;
+        justify-content: flex-end;
+    }
+}
 .modal {
     &-img {
         width: 90%;
@@ -157,13 +189,6 @@ computed: {
         width: 90%;
         margin: 10px 0;
     }
-    .time {
-        input {
-            width: 100%;
-            padding: 10px 0;
-            border: 1px solid #195A00;
-        }
-    }
     .pay {
         .input {
             width: 100%;
@@ -182,7 +207,9 @@ computed: {
         flex-wrap: wrap;
         &__item {
             width: 24%;
-            border: 1px solid #000;
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 18px;
             padding: 10px;
             margin-right: 1%;
             margin-bottom: 2%;
@@ -191,6 +218,7 @@ computed: {
                 height: 300px;
                 width: 100%;
                 object-fit: cover;
+                border-radius: 15px;
             }
             .status-active {
                 color: rgb(2, 171, 2);
