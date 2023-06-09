@@ -12,15 +12,18 @@
         <p class="px18 fw700">{{ products.name }}</p>
         <p class="price green fw700">{{ products.price }} ₸</p>
       </div>
-      <img src="@/assets/images/icons/basket.png" class="basket" alt="" />
+      <img @click="addToItems(products);" src="@/assets/images/icons/basket.png" class="basket" alt="" />
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
   props: ["products"],
+  methods: {
+    ...mapActions(["addToItems"])
+  },
   computed: {
     ...mapState(["cdn"]),
   },
