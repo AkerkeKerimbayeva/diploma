@@ -34,7 +34,16 @@
           <hr />
           <p class="price">{{ product.price }}</p>
           <div class="product-right__box">
-            <button class="button">Себетке қосу</button>
+            <button
+              v-if="activeCart"
+              class="button"
+              @click="minusValue(product)"
+            >
+              Себеттен өшіру
+            </button>
+            <button v-else class="button" @click="addToCart(product)">
+              Себетке қосу
+            </button>
           </div>
           <div class="share">
             <p>Бөлісу:</p>
@@ -60,7 +69,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import axios from "axios";
-import { mapState } from "vuex";
+import { mapGetters, mapState, mapActions } from "vuex";
 export default {
   components: {
     Swiper,
@@ -73,20 +82,72 @@ export default {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
+      activeCart: false,
     };
   },
   created() {
     this.getProduct();
   },
+  mounted() {
+    this.inTheCart();
+  },
   methods: {
+    ...mapActions(["LOCALSTORAGE_PRODUCT", "DELETE_PRODUCT"]),
     getProduct() {
       axios.get(`products/slug?slug=${this.$route.params.slug}`).then((res) => {
         this.product = res.data.products;
       });
     },
+    inTheCart() {
+      if (this.cartList && this.product?.product) {
+        let findCart = this.cartList.find(
+          (i) => i.id === this.product?.product.id
+        );
+        if (findCart) {
+          this.activeCart = true;
+          this.count = findCart.count;
+        } else {
+          this.activeCart = false;
+        }
+      }
+    },
+    addProductToBasket() {
+      this.ADD_PRODUCT_TO_BASKET(this.productInfo);
+    },
+    addToCart(product) {
+      this.activeCart = !this.activeCart;
+      this.$store.commit("ADD_TO_CART", { product, count: this.count });
+    },
+    minusValue(value) {
+      if (this.count > 1) {
+        this.count--;
+        this.$store.commit("SET_CART_COUNT", {
+          id: value.id,
+          count: this.count,
+        });
+      } else if (this.count === 1) {
+        this.activeCart = !this.activeCart;
+        this.$store.commit("DELETE_PRODUCT", { id: value.id });
+        this.count = 1;
+        this.$emit("DELETE_FROM_BASKET");
+      }
+    },
+    plusValue(value) {
+      this.count++;
+      this.$store.commit("SET_CART_COUNT", { id: value.id, count: this.count });
+    },
+    removeValue(value) {
+      this.$store.commit("DELETE_PRODUCT", { id: value.id });
+      this.count = 1;
+      this.$emit("DELETE_FROM_BASKET");
+    },
   },
   computed: {
     ...mapState(["cdn"]),
+    ...mapGetters({
+      basket: "GET_BASKET_OPENED",
+      cartList: "GET_CART_LIST",
+    }),
   },
   setup() {
     return {
@@ -96,8 +157,11 @@ export default {
   watch: {
     $route() {
       this.getProduct();
-    }
-  }
+    },
+    cartList() {
+      this.inTheCart();
+    },
+  },
 };
 </script>
 

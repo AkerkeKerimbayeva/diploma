@@ -7,20 +7,21 @@ export default createStore({
         isAuth: false,
         unAuth: false,
         userI: [],
+        product: [],
         cdn: "https://admin-foodtuck.devup.kz",
         searchData: null,
-        cart: []
+        cartLength: 0,
+        cartList: JSON.parse(localStorage.getItem("cart_products")) || [],
+        productById: [],
     },
     getters: {
         getUnAuth: (state) => state.unAuth,
         getIsAuth: (state) => state.isAuth,
         getUser: (state) => state.setUser,
         SEARCH_RESULT: (state) => state.searchData,
-        cart: ({ cart }) => cart,
-        delItem: ({ delItem }) => delItem,
-        Total: ({ Total }) => Total,
-        TotalPositions: ({ TotalPositions }) => TotalPositions,
-        Products: ({ items }) => items 
+        GET_CART_LENGTH: (state) => state.cartLength,
+        GET_CART_LIST: (state) => state.cartList,
+        GET_PRODUCTS_BY_ID: (state) => state.productById,
     },
     mutations: {
         SET_USER(state, user) {
@@ -38,33 +39,87 @@ export default createStore({
         SET_SEARCH(state, result) {
             state.searchData = result
         },
-        ADD_ITEM: (state, item) => {
-        state.TotalPositions++;
-        if (item.id in state.cart) {
-            state.cart[item.id].qt++;
-        } else {
-            // let stateItem = { ...item };
-            // stateItem.qt = 1;
-            // state.cart[item.id] = stateItem;
-        }
-        state.Total = calculateAmount(state.cart);
+        SET_INFO(state, info) {
+            state.info = info;
         },
-        REMOVE_ITEM: (state, item) => {
-            state.delItem = {};
-            state.delItem = copyFunc(state.cart, state.delItem, item);
-            delete state.cart[item];
-            state.Total = calculateAmount(state.cart);
-            state.TotalPositions = calculateTotal(state.cart);
+        SET_CART_LENGTH(state, length) {
+            state.cartLength = length;
         },
-        CHENGE_QT: state => {
-            state.TotalPositions = calculateTotal(state.cart);
-            state.Total = calculateAmount(state.cart);
+        SET_CART_LIST(state, cartList) {
+            state.cartList = cartList;
         },
-        REVIVA: state => {
-            state.cart = Object.assign(state.delItem, state.cart);
-            state.Total = calculateAmount(state.cart);
-            state.TotalPositions = calculateTotal(state.cart);
-        }
+        SET_PRODUCT_BY_ID(state, product) {
+            state.productById = product;
+        },
+        SET_CART_COUNT(state, { id, count }) {
+            state.cartList.forEach((item, idx) => {
+                if (item.id == id) {
+                    state.cartList[idx].count = count;
+                }
+            });
+            localStorage.setItem("cart_products", JSON.stringify(state.cartList));
+        },
+        ADD_TO_CART(state, { product, countValue }) {
+            product["count"] = countValue ? countValue : 1;
+            let cartList = JSON.parse(localStorage.getItem("cart_products"));
+            localStorage.setItem("cart_products", JSON.stringify([product]));
+            if (cartList == null) {
+              localStorage.setItem("cart_products", JSON.stringify([product]));
+              state.cartLength = localStorage.getItem("cart_products").length;
+              state.cartList = cartList;
+              alert("Добавлено в корзину");
+            } else if (cartList == []) {
+              cartList.push(product);
+              localStorage.setItem("cart_products", JSON.stringify(cartList));
+              state.cartLength = cartList.length;
+              state.cartList = cartList;
+              alert("Добавлено в корзину");
+            } else if (cartList.find((item) => item.id == product.id)) {
+              cartList.forEach((item, index) => {
+                if (item.id == product.id) {
+                  cartList.splice(index, 1);
+                }
+              });
+              localStorage.setItem("cart_products", JSON.stringify(cartList));
+              state.cartLength = cartList.length;
+              state.cartList = cartList;
+              alert("Добавлено в корзину");
+            } else {
+              cartList.push(product);
+              state.cartLength = cartList.length;
+              localStorage.setItem("cart_products", JSON.stringify(cartList));
+              state.cartList = cartList;
+              alert("Добавлено в корзину");
+            }
+          },
+        ADD_TO_CART_PRODUCT(state, { product, countValue }) {
+            product["count"] = countValue ? countValue : 1;
+            let cartList = JSON.parse(localStorage.getItem("cart_products"));
+            if (cartList && cartList.find((item) => item.id == product.id)) {
+              cartList.filter((i) => {
+                if (i.id === product.id) {
+                  i.count = countValue;
+                  localStorage.setItem("cart_products", JSON.stringify(cartList));
+                }
+              });
+              return false;
+            } else if (cartList !== null) {
+              cartList.push(product);
+              localStorage.setItem("cart_products", JSON.stringify(cartList));
+              state.cartLength = localStorage.getItem("cart_products");
+            } else {
+              localStorage.setItem("cart_products", JSON.stringify([product]));
+              state.cartLength = localStorage.getItem("cart_products");
+            }
+          },
+        DELETE_PRODUCT(state, { id }) {
+            let cartList = state.cartList.filter((t) => t.id !== id);
+            localStorage.setItem("cart_products", JSON.stringify(cartList));
+            state.cartList = cartList;
+            alert("Удалено из корзины");
+            state.cartLength = cartList.length
+            this.dispatch("CHECK_CARD_LIST");
+        },
     },
     actions: {
         checkAuth({ commit, state }) {
@@ -81,15 +136,22 @@ export default createStore({
             let result = await axios
             .get('get/' + 'search', {
                 params: {
-                  text: text
+                    text: text
                 }
             })
             console.log("searchData",result.data)
             commit('SET_SEARCH', result.data)
         },
-        addToItems: ({ commit }, item) => commit("ADD_ITEM", item),
-        removeItem: ({ commit }, item) => commit("REMOVE_ITEM", item),
-        chengeQt: ({ commit }) => commit("CHENGE_QT"),
-        revivalItem: ({ commit }) => commit("REVIVA")
+        CART_LENGTH_ACTION({ commit }) {
+          let data = localStorage.getItem("cart_products")
+          let stringData = JSON.parse(data)
+          commit("SET_CART_LENGTH", stringData.length);
+        },
+        CHECK_CARD_LIST({ commit }) {
+          commit(
+            "SET_CART_LIST",
+            JSON.parse(localStorage.getItem("cart_products"))
+          );
+        },
     },
 });
