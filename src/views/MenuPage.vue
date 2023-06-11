@@ -34,8 +34,8 @@
         <div class="sort">
           <div class="sort-title">Баға бойынша сұрыптау</div>
           <div class="sort-btm">
-            <input v-model="min_price" type="text">
-            <input v-model="max_price" type="text">
+            <input v-model="min_price" type="text" />
+            <input v-model="max_price" type="text" />
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@ export default {
       category_id: [],
       category: [],
       min_price: 0,
-      max_price: 20000
+      max_price: 20000,
     };
   },
   created() {
@@ -65,7 +65,9 @@ export default {
   methods: {
     getProduct() {
       axios
-        .get(`products?category_id=${this.category_id}&price=[${this.min_price}, ${this.max_price}]`)
+        .get(
+          `products?category_id=${this.category_id}&price=[${this.min_price}, ${this.max_price}]`
+        )
         .then((res) => {
           if (res.status === 200) {
             this.product = res.data;
@@ -73,25 +75,26 @@ export default {
         });
     },
     getCategory() {
-      axios.get("get/categories")
-      .then((res) => {
-        this.category = res.data
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-    }
+      axios
+        .get("get/categories")
+        .then((res) => {
+          this.category = res.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
   watch: {
     category_id() {
       this.getProduct(this.category_id);
     },
     min_price() {
-      this.getProduct(this.min_price)
+      this.getProduct(this.min_price);
     },
     max_price() {
-      this.getProduct(this.max_price)
-    }
+      this.getProduct(this.max_price);
+    },
   },
 };
 </script>

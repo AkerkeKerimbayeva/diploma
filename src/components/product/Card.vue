@@ -68,9 +68,23 @@ export default {
     }
   }
 }
-@media (max-width: 1120px) {
+@media (max-width: 1320px) {
   .card {
-    height: 240px;
+    height: 280px;
+    a {
+      img {
+        height: 180px;
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .card {
+    a {
+      img {
+        height: 150px;
+      }
+    }
   }
 }
 </style>

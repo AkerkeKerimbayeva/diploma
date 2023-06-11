@@ -40,22 +40,23 @@
             тағамдар
           </p>
           <p class="px16 fw400 best-left__mid">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-            diam pellentesque bibendum non dui volutpat fringilla bibendum.
-            Urna, elit augue urna, vitae feugiat pretium donec id elementum.
-            Ultrices mattis sed vitae mus risus. Lacus nisi, et ac dapibus sit
-            eu velit in consequat.
+            Ең мықты аспазшылардың дәмді тағамдары
           </p>
           <div class="best-left__line">
             <p class="px18 fw500">
-              Lacus nisi, et ac dapibus sit eu velit in consequat.
+              Алматының қақ ортасында он бес жылдан астам уақыт бойы "Foodtuck"
+              мейрамханасы есігін айқара ашты.
             </p>
             <p class="px18 fw500">
-              Quisque diam pellentesque bibendum non dui volutpat fringilla
+              "Foodtuck" мейрамханасы Өзін Алматы қаласындағы Классикалық FINE
+              DINING RESTAURANT (Premium класты жоғары асханалық мейрамхана)
+              форматындағы сүйікті орын ретінде танытты.
             </p>
-            <p class="px18 fw500">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit
-            </p>
+            <!-- <p class="px18 fw500">
+              Мейрамханада жеті дәстүрлі гастрономиялық тағамдар бар:
+              американдық, кавказдық, жапондық, орыс, итальян, Шығыс және
+              вегетариандық
+            </p> -->
           </div>
           <a href="/menu"><button class="button">Толығырақ</button></a>
         </div>
@@ -137,11 +138,8 @@
             <span class="green">тәжірибелі</span> аспаздар
           </p>
           <p class="px16 fw400">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-            diam pellentesque bibendum non dui volutpat fringilla bibendum.
-            Urna, elit augue urna, vitae feugiat pretium donec id elementum.
-            Ultrices mattis sed vitae mus risus. Lacus nisi, et ac dapibus sit
-            eu velit in consequat.
+            Мейрамханада жеті дәстүрлі гастрономиялық тағамдар бар: американдық,
+            кавказдық, жапондық, орыс, итальян, Шығыс және вегетариандық
           </p>
           <div class="taste-right__items">
             <div class="item">
@@ -225,90 +223,23 @@
             :tabItems="tabItems"
             @setTab="selectNewsTab"
             :selected="selectedNewsTab"
+            class="d-none"
           >
           </personal-tab>
           <tab-block :isSelected="selectedNewsTab === 'Таңғы ас'">
             <div class="meal">
               <img class="meal-left" src="@/assets/images/meal.png" alt="" />
-              <div class="meal-cards">
-                <div class="meal-cards__item">
-                  <img src="@/assets/images/meal1.png" alt="" />
+              <div class="meal-cards" v-if="product">
+                <div
+                  class="meal-cards__item"
+                  v-for="(item, index) in product.products?.slice(0, 6)"
+                  :key="index"
+                >
+                  <img :src="cdn + item.productId[0]?.image" alt="" />
                   <div class="text">
-                    <p class="px18 fw700">Lettuce Leaf</p>
-                    <p class="par px14 fw400">
-                      Lacus nisi, et ac dapibus velit in consequat.
-                    </p>
-                    <p class="px18 green fw700">12.5$</p>
-                  </div>
-                </div>
-                <div class="meal-cards__item">
-                  <img src="@/assets/images/meal1.png" alt="" />
-                  <div class="text">
-                    <p class="px18 fw700">Lettuce Leaf</p>
-                    <p class="par px14 fw400">
-                      Lacus nisi, et ac dapibus velit in consequat.
-                    </p>
-                    <p class="px18 green fw700">12.5$</p>
-                  </div>
-                </div>
-                <div class="meal-cards__item">
-                  <img src="@/assets/images/meal1.png" alt="" />
-                  <div class="text">
-                    <p class="px18 fw700">Lettuce Leaf</p>
-                    <p class="par px14 fw400">
-                      Lacus nisi, et ac dapibus velit in consequat.
-                    </p>
-                    <p class="px18 green fw700">12.5$</p>
-                  </div>
-                </div>
-                <div class="meal-cards__item">
-                  <img src="@/assets/images/meal1.png" alt="" />
-                  <div class="text">
-                    <p class="px18 fw700">Lettuce Leaf</p>
-                    <p class="par px14 fw400">
-                      Lacus nisi, et ac dapibus velit in consequat.
-                    </p>
-                    <p class="px18 green fw700">12.5$</p>
-                  </div>
-                </div>
-                <div class="meal-cards__item">
-                  <img src="@/assets/images/meal1.png" alt="" />
-                  <div class="text">
-                    <p class="px18 fw700">Lettuce Leaf</p>
-                    <p class="par px14 fw400">
-                      Lacus nisi, et ac dapibus velit in consequat.
-                    </p>
-                    <p class="px18 green fw700">12.5$</p>
-                  </div>
-                </div>
-                <div class="meal-cards__item">
-                  <img src="@/assets/images/meal1.png" alt="" />
-                  <div class="text">
-                    <p class="px18 fw700">Lettuce Leaf</p>
-                    <p class="par px14 fw400">
-                      Lacus nisi, et ac dapibus velit in consequat.
-                    </p>
-                    <p class="px18 green fw700">12.5$</p>
-                  </div>
-                </div>
-                <div class="meal-cards__item">
-                  <img src="@/assets/images/meal1.png" alt="" />
-                  <div class="text">
-                    <p class="px18 fw700">Lettuce Leaf</p>
-                    <p class="par px14 fw400">
-                      Lacus nisi, et ac dapibus velit in consequat.
-                    </p>
-                    <p class="px18 green fw700">12.5$</p>
-                  </div>
-                </div>
-                <div class="meal-cards__item">
-                  <img src="@/assets/images/meal1.png" alt="" />
-                  <div class="text">
-                    <p class="px18 fw700">Lettuce Leaf</p>
-                    <p class="par px14 fw400">
-                      Lacus nisi, et ac dapibus velit in consequat.
-                    </p>
-                    <p class="px18 green fw700">12.5$</p>
+                    <p class="px18 fw700" v-html="item.name"></p>
+                    <p class="par px14 fw400" v-html="item.mini_desc"></p>
+                    <p class="px18 green fw700">{{ item.price }}</p>
                   </div>
                 </div>
               </div>
@@ -323,11 +254,14 @@
 <script>
 import personalTab from "@/components/tab/personalTab.vue";
 import tabBlock from "@/components/tab/tabBlock.vue";
+import axios from "axios";
+import { mapState } from "vuex";
 export default {
   name: "HomeView",
   components: { personalTab, tabBlock },
   data() {
     return {
+      product: [],
       selectedNewsTab: "Таңғы ас",
       tabItems: [
         "Таңғы ас",
@@ -340,10 +274,23 @@ export default {
       ],
     };
   },
+  created() {
+    this.getProduct();
+  },
   methods: {
     selectNewsTab(tab) {
       this.selectedNewsTab = tab;
     },
+    getProduct() {
+      axios.get(`products`).then((res) => {
+        if (res.status === 200) {
+          this.product = res.data;
+        }
+      });
+    },
+  },
+  computed: {
+    ...mapState(["cdn"]),
   },
 };
 </script>
